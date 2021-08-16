@@ -6,9 +6,7 @@ public class Player2Movement_ : MonoBehaviour
 {
     // Start is called before the first frame update
 
-
-
-    [Header("Check the distance: ")]
+    [Header("Characters: ")]
     public GameObject character1;
     public GameObject character2;
 
@@ -25,23 +23,39 @@ public class Player2Movement_ : MonoBehaviour
     public float duration;
     public float magnitude;
 
-    string[] clothNum = new string[5] { "Cloth", "Cloth 2", "Cloth 3", "Cloth 4", "Cloth 5" };
+    string[] clothNum = new string[6] { "Cloth", "Cloth 2", "Cloth 3", "Cloth 4", "Cloth 5", "Cloth 6" };
     public float knockBackPower;
 
+    [Header("Character Head ")]
     public GameObject characterHead;
+    [Header("Head Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
+    public float headSize;
     Vector2 characterHeadScale;
     Vector2 characterHandScale;
 
-    public float speed;
+    [Header("Character Attributes")]
+    public float originalSpeed;
+    public float ladderSpeed;
+    public float bridgeSpeed;
     public float jump;
+    float speed;
 
+    [Header("Attack States: ")]
     public bool stopHitting = false;
     public float setHitCoolTime;
     float hitCoolTime;
     bool isHitted = false;
     bool isJump2 = false;
+    bool isLadder = false;
 
+    [Header("Player Keyboard Control: ")]
     public bool lockMoving = false;
+
+    [Header("Scrpit: !mportant! Don't touch!!!")]
+    public Rope_ rope;
+    public GameObject spriteRender;
+    public GameObject pivot;
+    public float handScaleX, handScaleY;
 
     PlayerMovement_ character1_;
     Rigidbody2D rb2;
@@ -53,16 +67,18 @@ public class Player2Movement_ : MonoBehaviour
         rb2 = GetComponent<Rigidbody2D>();
         healthSystem_ = GetComponent<HleathSystem>();
         characterHeadScale = characterHead.transform.localScale;
-        sr = GetComponent<SpriteRenderer>();
+        sr = spriteRender.GetComponent<SpriteRenderer>();
         sr.color = Color.white;
         character1_ = character1.GetComponent<PlayerMovement_>();
+
+        speed = originalSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    
+        Debug.Log("Speed : " + speed);
      
      
     }
@@ -84,6 +100,8 @@ public class Player2Movement_ : MonoBehaviour
     }
     private void CharacterMovingFunction2()
     {
+
+
         if (lockMoving == false)
         {
             float dir = character2.transform.position.x - character1.transform.position.x;
@@ -95,10 +113,10 @@ public class Player2Movement_ : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                characterHeadScale.x = -1;
+                characterHeadScale.x = -headSize;
                 if (dir <= 0)
                 {
-                    if (Vector3.Distance(character2.transform.position, character1.transform.position) > character1_.ropeLength)
+                    if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
                         return;
                 }
 
@@ -110,10 +128,10 @@ public class Player2Movement_ : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
             {
 
-                characterHeadScale.x = 1;
+                characterHeadScale.x = headSize;
                 if (dir > 0)
                 {
-                    if (Vector3.Distance(character2.transform.position, character1.transform.position) > character1_.ropeLength)
+                    if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
                         return;
                 }
 
@@ -122,19 +140,39 @@ public class Player2Movement_ : MonoBehaviour
 
             }
 
-
-
-           if (Input.GetKeyDown(KeyCode.UpArrow) && isJump2 == false)
+            if (isLadder == true)
             {
-                //rb2.AddForce(Vector2.up * jump);
-                rb2.AddForce(new Vector2(rb2.velocity.x, jump));
-                isJump2 = true;
+
+                rb2.gravityScale = 0;
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    transform.Translate(transform.up * Time.deltaTime * speed);
+                }
+
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    transform.Translate(-transform.up * Time.deltaTime * speed);
+                }
+            }
+            else
+            {
+                rb2.gravityScale = 8;
+                if (Input.GetKeyDown(KeyCode.UpArrow) && isJump2 == false)
+                {
+                    //rb2.AddForce(Vector2.up * jump);
+                    rb2.AddForce(new Vector2(rb2.velocity.x, jump * 1000));
+                    isJump2 = true;
+                }
             }
 
+         
+
             characterHead.transform.localScale = characterHeadScale;
+
+            CharacterHandDirection();
         }
 
-        CharacterHandDirection();
+      
     }
 
     void CharacterHandDirection()
@@ -144,14 +182,14 @@ public class Player2Movement_ : MonoBehaviour
 
         if (dir.x > 0)
         {
-            characterHandScale.x = 0.7f;
-            characterHandScale.y = 0.2f;
+            characterHandScale.x = -handScaleX;
+            characterHandScale.y = handScaleY;
         }
         else
         {
-            characterHandScale.x = -0.7f;
-            characterHandScale.y = 0.2f;
-  
+            characterHandScale.x = handScaleX;
+            characterHandScale.y = handScaleY;
+
         }
 
         characterHand.transform.localScale = characterHandScale;
@@ -213,22 +251,39 @@ public class Player2Movement_ : MonoBehaviour
             }
         }
 
-       
-        
-        for (int i = 0; i < cloth.Length; i++)
+
+        // if (collision.gameObject.CompareTag("Bridge"))
+        // {
+        //     speed = bridgeSpeed;
+        // }
+
+
+        //for (int i = 0; i < cloth.Length; i++)
+        //{
+
+        //    if (collision.gameObject.tag == clothNum[i])
+        //    {
+        //        Cloth_ cloth_ = collision.gameObject.GetComponent<Cloth_>();
+        //        if (cloth_.isflying == false)
+        //        {
+        //            //float dirx_ = (character2.transform.position.x + character1.transform.position.x) / 2;
+        //            //cloth[i].transform.position = new Vector2(dirx_, cloth[i].transform.position.y + 10);
+        //            cloth[i].transform.position = character1_.middle.transform.position;
+        //        }
+
+        //        //float diry_ = Mathf.Abs(transform.position.y - character2.position.y);
+        //    }
+        //}
+
+
+        if (collision.gameObject.tag == "Cloth")
         {
-
-            if (collision.gameObject.tag == clothNum[i])
+            Cloth_ cloth_ = collision.gameObject.GetComponent<Cloth_>();
+            if (cloth_.isflying == false)
             {
-                Cloth_ cloth_ = collision.gameObject.GetComponent<Cloth_>();
-                if (cloth_.isflying == false)
-                {
-                    //float dirx_ = (character2.transform.position.x + character1.transform.position.x) / 2;
-                    //cloth[i].transform.position = new Vector2(dirx_, cloth[i].transform.position.y + 10);
-                    cloth[i].transform.position = character1_.middle.transform.position;
-                }
-
-                //float diry_ = Mathf.Abs(transform.position.y - character2.position.y);
+                //float dirx_ = (character2.transform.position.x + character1.transform.position.x) / 2;
+                //cloth[i].transform.position = new Vector2(dirx_, cloth[i].transform.position.y + 10);
+                collision.transform.position = character1_.middle.transform.position;
             }
         }
     }
@@ -244,6 +299,8 @@ public class Player2Movement_ : MonoBehaviour
 
         }
 
+     
+
 
     }
 
@@ -254,6 +311,19 @@ public class Player2Movement_ : MonoBehaviour
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
             wP_.isPlayer2 = true;
         }
+
+        if (other.CompareTag("Ladder"))
+        {
+            isLadder = true;
+            speed = ladderSpeed;
+        }
+
+        if (other.CompareTag("Bridge"))
+        {
+            speed = bridgeSpeed;
+        }
+
+    
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -262,6 +332,17 @@ public class Player2Movement_ : MonoBehaviour
         {
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
             wP_.isPlayer2 = false;
+        }
+
+        if (other.CompareTag("Ladder"))
+        {
+            isLadder = false;
+            speed = originalSpeed;
+        }
+
+        if (other.CompareTag("Bridge"))
+        {
+            speed = originalSpeed;
         }
     }
 

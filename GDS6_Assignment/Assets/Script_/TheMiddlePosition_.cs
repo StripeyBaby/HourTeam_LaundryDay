@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class TheMiddlePosition_ : MonoBehaviour
 {
+    [Header("Character Position: ")]
     public Transform character1;
     public Transform character2;
 
     //public GameObject[] theItemPosition = new GameObject[4];
-
+    [Header("Script: !mportant! Don't Touch!!! ")]
     public int numberItem = 0;
     public float posY_;
     float index;

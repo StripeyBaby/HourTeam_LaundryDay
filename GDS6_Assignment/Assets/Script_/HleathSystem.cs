@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class HleathSystem : MonoBehaviour
 {
-
+  
     public enum LifeSituation
     {
         Alive,
         Deadth
     }
-
+    [Header("Character Live Situation : ")]
     public LifeSituation lS_ = LifeSituation.Alive;
 
-    [Header("UI:")]
+    [Header("Health Bar UI:")]
     public Slider slider;
     //public Gradient gradient;
     public Image fill;

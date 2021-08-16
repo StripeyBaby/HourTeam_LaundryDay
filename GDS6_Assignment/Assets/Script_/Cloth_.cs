@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Cloth_ : MonoBehaviour
 {
+    [Header("Middle Place Input: ")]
     public GameObject middlePlace;
-    // public GameObject[] position;
-    // public GameObject player1;
+
+
+    [Header("Script : !mportant! Don't Touch !!!")]
     public Vector3 position;
 
-    bool isJump = false;
+    //bool isJump = false;
     public bool isflying = false;
     Rigidbody2D rd2_;
-    BoxCollider2D bC2_;
+    //BoxCollider2D bC2_;
 
     bool noCollide = false;
+    [Header("No Collider Time: ")]
     public float setTime = 10;
     float curTime;
     private void Start()
     {
         rd2_ = GetComponent<Rigidbody2D>();
-        bC2_ = GetComponent<BoxCollider2D>();
+        //bC2_ = GetComponent<BoxCollider2D>();
     }
     int testIndex;
 
@@ -28,6 +31,7 @@ public class Cloth_ : MonoBehaviour
     {
       if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
       {
+
           //±‹√‚ø’Ã¯
           if (rd2_ == null)
           {
@@ -54,21 +58,93 @@ public class Cloth_ : MonoBehaviour
           }
       }
     }
+
+
+    public static List<Transform> allStaticCube = new List<Transform>();
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour")
         {
             isflying = false;
             rd2_.mass = 5;
+
+
+           // PosManager.instance.allCube.Remove(transform.gameObject);
+
+           // PosManager.instance.SetFalse();
+           // for (int i = 0; i < PosManager.instance.allCube.Count - 1; i++)
+           // {
+           //     PosManager.instance.allAimPos[i].gameObject.SetActive(true);
+           //
+           //     
+           //
+           // }
         }
 
         if (collision.gameObject.tag == "Rope" && noCollide == false)
         {
 
+
+
+            
+
             var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
 
             this.transform.parent = middlePlace.transform;
-            transform.position = middlePlace.transform.position;
+           // transform.position = middlePlace.transform.position;
+
+
+
+
+
+            Vector3 lastPos = transform.position;
+
+            this.transform.parent = middlePlace.transform;
+
+            //float lastX = transform.localPosition.x;
+            //transform.position = middlePlace.transform.position;
+           // transform.localPosition = new Vector3(Random.Range(1f, 6f), 0, 0);
+
+
+            //Debug.Log("111");
+
+            //PosManager.instance.gameObject.SetActive(true);
+
+            //int nowNum = PosManager.instance.allCube.Count;
+
+
+
+            //for (int i = 0; i < nowNum-1; i++)
+            //{
+            //    PosManager.instance.allAimPos[i].gameObject.SetActive(true);
+
+            //    if (PosManager.instance.switchState)
+            //    {
+
+
+            //        PosManager.instance.allAimPos[i].position = new Vector3(lastPos.x, transform.position.y, lastPos.z);
+            //    }
+
+
+
+            //}
+
+
+            //PosManager.instance.allAimPos[nowNum - 1].GetComponent<SpriteRenderer>().sprite
+            //   = transform.GetComponent<SpriteRenderer>().sprite;
+
+
+
+
+
+
+            //PosManager.instance.RandomRotate();
+
+
+
+
+
             Destroy(rd2_);
             noCollide = true;
 

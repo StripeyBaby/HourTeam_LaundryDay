@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Rope_ : MonoBehaviour
 {
+    [Header("Character Hands Position")]
     public Transform character1;
     public Transform character2;
 
+    [Header("Rope Thickness: ")]
+    public float lineWidth = 0.1f;
+    [Header("Rope Length: ")]
+    public float ropeLength;
     private LineRenderer lineRenderer;
     private List<RopeSegment> ropeSegments = new List<RopeSegment>();
     private float ropeSegLen = 0.25f;
     private int segmentLength = 35;
-    private float lineWidth = 0.1f;
+    
+    [Header("Self-Collider: ")]
     public EdgeCollider2D collider;
 
     // Use this for initialization
