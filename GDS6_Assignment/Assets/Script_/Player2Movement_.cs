@@ -23,7 +23,8 @@ public class Player2Movement_ : MonoBehaviour
     public float duration;
     public float magnitude;
 
-    string[] clothNum = new string[6] { "Cloth", "Cloth 2", "Cloth 3", "Cloth 4", "Cloth 5", "Cloth 6" };
+    //string[] clothNum = new string[6] { "Cloth", "Cloth 2", "Cloth 3", "Cloth 4", "Cloth 5", "Cloth 6" };
+    string clothNum = "Cloth";
     public float knockBackPower;
 
     [Header("Character Head ")]
@@ -198,13 +199,18 @@ public class Player2Movement_ : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        for (int i = 0; i < cloth.Length; i++)
-        {
-            if (collision.gameObject.tag == clothNum[i])
-            {
-                isJump2 = false;
+        //for (int i = 0; i < cloth.Length; i++)
+        //{
+        //    if (collision.gameObject.tag == clothNum[i])
+        //    {
+        //        isJump2 = false;
 
-            }
+        //    }
+        //}
+        if (collision.gameObject.tag == clothNum)
+        {
+            isJump2 = false;
+
         }
 
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
