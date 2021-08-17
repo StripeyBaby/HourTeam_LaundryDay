@@ -78,7 +78,7 @@ public class Player2Movement_ : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Speed : " + speed);
+       // Debug.Log("Speed : " + speed);
      
      
     }

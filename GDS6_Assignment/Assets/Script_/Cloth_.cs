@@ -175,7 +175,7 @@ public class Cloth_ : MonoBehaviour
         if (other.tag == "LaundryPlace")
         {
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
-            wP_.itemNumber++;
+            wP_.itemCount++;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -185,7 +185,7 @@ public class Cloth_ : MonoBehaviour
         if (other.tag == "LaundryPlace")
         {
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
-            wP_.itemNumber--;
+            wP_.itemCount--;
         }
     }
 }

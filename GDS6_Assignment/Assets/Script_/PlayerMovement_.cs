@@ -216,7 +216,7 @@ public class PlayerMovement_ : MonoBehaviour
         {
             isJump = false;
 
-            Debug.Log("Getin here");
+           // Debug.Log("Getin here");
         }
 
         //for (int i = 0; i < cloth.Length; i++)

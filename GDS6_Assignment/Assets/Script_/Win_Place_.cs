@@ -8,7 +8,7 @@ public class Win_Place_ : MonoBehaviour
     public bool needCompleteTask = false;
     public bool needBothCharacter = false;
     public bool needAllItems = false;
-    public int numberMainObjectNeed;
+    public int HowMnayCloth;
 
     [Header("System: !mportant! Dont Touch It!!!!")]
     public HleathSystem hS;
@@ -16,15 +16,24 @@ public class Win_Place_ : MonoBehaviour
     public bool isPlayer2 = false;
     bool finished1;
 
-    public int itemNumber;
+    public int itemCount;
     bool finished2;
 
-    public int completeTask = 0;
+    int completeTask = 0;
     int finishTask;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (needCompleteTask == true)
+        {
+            completeTask++;
+        }  if (needBothCharacter == true)
+        {
+            completeTask++;
+        }  if (needAllItems == true)
+        {
+            completeTask++;
+        }
     }
 
     // Update is called once per frame
@@ -35,16 +44,20 @@ public class Win_Place_ : MonoBehaviour
         {
             BothCharacterGetIn();
         }
+   
 
         if (needAllItems == true)
         {
             AllItemCollections();
         }
+    
 
         if (needCompleteTask == true)
         {
             CompleteAllChallenge();
         }
+
+      //  Debug.Log("How many Complete Task : " + completeTask);
 
     }
 
@@ -66,7 +79,7 @@ public class Win_Place_ : MonoBehaviour
     {
         if (finished2 != true)
         {
-            if (itemNumber == numberMainObjectNeed)
+            if (itemCount == HowMnayCloth)
             {
                 //Debug.Log("You have all Item");
                 finishTask++;
@@ -80,7 +93,7 @@ public class Win_Place_ : MonoBehaviour
     {
         if (finishTask == completeTask)
         {
-            finishTask = completeTask;
+            //finishTask = completeTask;
             //Time.timeScale = 0;
             //hS.stopMoving = true;
         }
