@@ -33,6 +33,10 @@ public class Player2Movement_ : MonoBehaviour
     public float headSize;
     Vector2 characterHeadScale;
     Vector2 characterHandScale;
+    [Header("Feet Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
+    public GameObject characterFeet;
+    Vector2 characterFeetScale;
+    public float feetSize;
 
     [Header("Character Attributes")]
     public float originalSpeed;
@@ -57,17 +61,21 @@ public class Player2Movement_ : MonoBehaviour
     public GameObject spriteRender;
     public GameObject pivot;
     public float handScaleX, handScaleY;
+    public float gravityScale;
 
     PlayerMovement_ character1_;
     Rigidbody2D rb2;
     SpriteRenderer sr;
     HleathSystem healthSystem_;
+    Animator feetAnimation_;
     // Start is called before the first frame update
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
         healthSystem_ = GetComponent<HleathSystem>();
         characterHeadScale = characterHead.transform.localScale;
+        characterFeetScale = characterFeet.transform.localScale;
+        feetAnimation_ = characterFeet.GetComponent<Animator>();
         sr = spriteRender.GetComponent<SpriteRenderer>();
         sr.color = Color.white;
         character1_ = character1.GetComponent<PlayerMovement_>();
@@ -79,7 +87,7 @@ public class Player2Movement_ : MonoBehaviour
     void Update()
     {
 
-       // Debug.Log("Speed : " + speed);
+        Debug.Log("Is Jump : " + isJump2);
      
      
     }
@@ -105,16 +113,14 @@ public class Player2Movement_ : MonoBehaviour
 
         if (lockMoving == false)
         {
+            float index; // transfer the gravity scale value;
             float dir = character2.transform.position.x - character1.transform.position.x;
-            //float dir2 = character2.transform.position.y - character1.transform.position.y;
-           // if (Vector3.Distance(character2.transform.position, character1.transform.position) > character1_.ropeLength)
-            {
-                
-            }
+       
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                characterHeadScale.x = -headSize;
+                characterHeadScale.x = headSize;
+                characterFeetScale.x = feetSize;
                 if (dir <= 0)
                 {
                     if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
@@ -129,7 +135,8 @@ public class Player2Movement_ : MonoBehaviour
             if (Input.GetKey(KeyCode.RightArrow))
             {
 
-                characterHeadScale.x = headSize;
+                characterHeadScale.x = -headSize;
+                characterFeetScale.x = -feetSize;
                 if (dir > 0)
                 {
                     if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
@@ -144,7 +151,7 @@ public class Player2Movement_ : MonoBehaviour
             if (isLadder == true)
             {
 
-                rb2.gravityScale = 0;
+                index = 0;
                 if (Input.GetKey(KeyCode.UpArrow))
                 {
                     transform.Translate(transform.up * Time.deltaTime * speed);
@@ -157,7 +164,7 @@ public class Player2Movement_ : MonoBehaviour
             }
             else
             {
-                rb2.gravityScale = 8;
+                index = gravityScale;
                 if (Input.GetKeyDown(KeyCode.UpArrow) && isJump2 == false)
                 {
                     //rb2.AddForce(Vector2.up * jump);
@@ -166,11 +173,13 @@ public class Player2Movement_ : MonoBehaviour
                 }
             }
 
-         
 
+            rb2.gravityScale = index;
             characterHead.transform.localScale = characterHeadScale;
+            characterFeet.transform.localScale = characterFeetScale;
 
             CharacterHandDirection();
+            CharacterFeetFunction();
         }
 
       
@@ -183,12 +192,12 @@ public class Player2Movement_ : MonoBehaviour
 
         if (dir.x > 0)
         {
-            characterHandScale.x = -handScaleX;
+            characterHandScale.x = handScaleX;
             characterHandScale.y = handScaleY;
         }
         else
         {
-            characterHandScale.x = handScaleX;
+            characterHandScale.x = -handScaleX;
             characterHandScale.y = handScaleY;
 
         }
@@ -196,6 +205,20 @@ public class Player2Movement_ : MonoBehaviour
         characterHand.transform.localScale = characterHandScale;
     }
 
+    void CharacterFeetFunction()
+    {
+        characterFeetScale.y = 0.5f;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+        {
+            feetAnimation_.SetBool("Moving", true);
+        }
+        else
+        {
+            feetAnimation_.SetBool("Moving", false);
+        }
+
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -213,15 +236,15 @@ public class Player2Movement_ : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
-        {
-            // Debug.Log("U have get in here");
-            isJump2 = false;
-            //isJump2 = false;
-            //   canGoingDown = false;
-
-
-        }
+        //if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
+        //{
+        //    // Debug.Log("U have get in here");
+        //    isJump2 = false;
+        //    //isJump2 = false;
+        //    //   canGoingDown = false;
+        //
+        //
+        //}
 
         if (collision.gameObject.tag == "DeathPool") 
         {
@@ -292,6 +315,15 @@ public class Player2Movement_ : MonoBehaviour
                 collision.transform.position = character1_.middle.transform.position;
             }
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
+        { 
+            isJump2 = false;
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)

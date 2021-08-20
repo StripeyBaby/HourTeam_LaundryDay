@@ -24,7 +24,7 @@ public class TheMiddlePosition_ : MonoBehaviour
     void Update()
     {
         float heightIndex = (character1.position.y + character2.position.y) / 2;
-        float height = heightIndex + 3;
+        float height = heightIndex + posY_;
         float posX_ = (character1.position.x + character2.position.x) / 2;
         transform.position = new Vector2(posX_, height);
     }

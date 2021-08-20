@@ -37,7 +37,7 @@ public class Cloth_ : MonoBehaviour
           {
               this.transform.parent = null;
               rd2_ = gameObject.AddComponent<Rigidbody2D>();
-              rd2_.AddForce(Vector2.up * 1000);
+              rd2_.AddForce(Vector2.up * 5000);
               rd2_.gravityScale = 2;
           }
       
@@ -62,7 +62,7 @@ public class Cloth_ : MonoBehaviour
 
     public static List<Transform> allStaticCube = new List<Transform>();
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour")
         {
@@ -87,63 +87,15 @@ public class Cloth_ : MonoBehaviour
 
 
 
-            
+          
 
             var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
 
             this.transform.parent = middlePlace.transform;
-           // transform.position = middlePlace.transform.position;
-
-
-
-
 
             Vector3 lastPos = transform.position;
 
             this.transform.parent = middlePlace.transform;
-
-            //float lastX = transform.localPosition.x;
-            //transform.position = middlePlace.transform.position;
-           // transform.localPosition = new Vector3(Random.Range(1f, 6f), 0, 0);
-
-
-            //Debug.Log("111");
-
-            //PosManager.instance.gameObject.SetActive(true);
-
-            //int nowNum = PosManager.instance.allCube.Count;
-
-
-
-            //for (int i = 0; i < nowNum-1; i++)
-            //{
-            //    PosManager.instance.allAimPos[i].gameObject.SetActive(true);
-
-            //    if (PosManager.instance.switchState)
-            //    {
-
-
-            //        PosManager.instance.allAimPos[i].position = new Vector3(lastPos.x, transform.position.y, lastPos.z);
-            //    }
-
-
-
-            //}
-
-
-            //PosManager.instance.allAimPos[nowNum - 1].GetComponent<SpriteRenderer>().sprite
-            //   = transform.GetComponent<SpriteRenderer>().sprite;
-
-
-
-
-
-
-            //PosManager.instance.RandomRotate();
-
-
-
-
 
             Destroy(rd2_);
             noCollide = true;
@@ -163,10 +115,12 @@ public class Cloth_ : MonoBehaviour
             //rd2_.mass = 1;
         }
 
-        if (collision.gameObject.CompareTag("Rope"))
-        {
-            this.transform.parent = null;
-        }
+       // if (collision.gameObject.CompareTag("Rope"))
+       // {
+       //     this.transform.parent = null;
+       //     rd2_ = gameObject.AddComponent<Rigidbody2D>();
+       //     rd2_.gravityScale = 2;
+       // }
 
     }
 
@@ -177,6 +131,26 @@ public class Cloth_ : MonoBehaviour
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
             wP_.itemCount++;
         }
+
+       //if (other.tag == "Rope" && noCollide == false)
+       //{
+       //
+       //
+       //
+       //
+       //
+       //    var a = other.gameObject.GetComponent<EdgeCollider2D>().points;
+       //
+       //    this.transform.parent = middlePlace.transform;
+       //
+       //    Vector3 lastPos = transform.position;
+       //
+       //    this.transform.parent = middlePlace.transform;
+       //
+       //    Destroy(rd2_);
+       //    noCollide = true;
+       //
+       //}
     }
     private void OnTriggerExit2D(Collider2D other)
     {

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8612143166709338805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.61, y: 10.9, z: 0}
-  m_LocalScale: {x: 2.0285, y: 2.0285, z: 2.0285}
+  m_LocalScale: {x: 3, y: 3, z: 2.0285}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9eb309bfd5fafce4a973774a34e45ee3, type: 3}
-  m_Color: {r: 0.9528302, g: 0.26544702, b: 0.20225172, a: 1}
+  m_Color: {r: 0.22642016, g: 0.9529412, b: 0.20392156, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,8 +124,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -147,4 +147,4 @@ MonoBehaviour:
   middlePlace: {fileID: 0}
   position: {x: 0, y: 0, z: 0}
   isflying: 0
-  setTime: 2
+  setTime: 3

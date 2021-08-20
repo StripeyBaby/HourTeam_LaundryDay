@@ -19,8 +19,6 @@ public class PlayerMovement_ : MonoBehaviour
     [Header("Attack Shake: ")]
     public float duration;
     public float magnitude;
-
-
     //string[] clothNum = new string[5] { "Cloth", "Cloth 2", "Cloth 3", "Cloth 4", "Cloth 5" };
     string clothNum = "Cloth";
     public float knockBackPower;
@@ -31,6 +29,10 @@ public class PlayerMovement_ : MonoBehaviour
     public float headSize;
     Vector2 characterHeadScale;
     Vector2 characterHandScale;
+    [Header("Feet Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
+    public GameObject characterFeet;
+    Vector2 characterFeetScale;
+    public float feetSize;
 
     [Header("Character Attributes")]
     public float originalSpeed;
@@ -56,11 +58,15 @@ public class PlayerMovement_ : MonoBehaviour
     public GameObject spriteRender;
     public GameObject pivot;
     public float handScaleX, handScaleY;
+    public float switchBodyDistance;
+    public float gravityScale;
+
 
     Rigidbody2D rb2_;
     SpriteRenderer sr;
     HleathSystem healthSystem_;
     Player2Movement_ character2_;
+    Animator feetAnimation_;
 
     //BoxCollider2D bC2;
     // Start is called before the first frame update
@@ -72,7 +78,9 @@ public class PlayerMovement_ : MonoBehaviour
         rb2_ = GetComponent<Rigidbody2D>();
         character2_ = character2.GetComponent<Player2Movement_>();
         characterHeadScale = characterHead.transform.localScale;
-
+        characterFeetScale = characterFeet.transform.localScale;
+        feetAnimation_ = characterFeet.GetComponent<Animator>();
+        
         speed = originalSpeed;
 
     }
@@ -113,13 +121,15 @@ public class PlayerMovement_ : MonoBehaviour
         
         if (lockMoving == false)
         {
+            float index; // transfer the gravity scale value;
             float dir = character2.transform.position.x - character1.transform.position.x;
             if (Input.GetKey(KeyCode.A))
             {
 
               locaEulerY= -180;
 
-                characterHeadScale.x = -headSize;
+                characterHeadScale.x = headSize;
+                characterFeetScale.x = feetSize;
                 if (dir > 0)
                 {
                     if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
@@ -133,7 +143,8 @@ public class PlayerMovement_ : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
             {
                 locaEulerY = 0;
-                characterHeadScale.x = headSize;
+                characterHeadScale.x = -headSize;
+                characterFeetScale.x = -feetSize;
                 if (dir <= 0)
                 {
                     if (Vector3.Distance(character2.transform.position, character1.transform.position) > rope.ropeLength)
@@ -147,7 +158,7 @@ public class PlayerMovement_ : MonoBehaviour
             
             if (isLadder == true)
             {
-             
+                index = 0;
                 rb2_.gravityScale = 0;
                 if (Input.GetKey(KeyCode.W))
                 {
@@ -162,21 +173,22 @@ public class PlayerMovement_ : MonoBehaviour
             }
             else
             {
-              rb2_.gravityScale = 8;
+              index = gravityScale;
               if (Input.GetKeyDown(KeyCode.W) && isJump == false)
               {
                   rb2_.AddForce(new Vector2(rb2_.velocity.x, jump * 1000));
                   isJump = true;
               }
             }
-        
 
+            rb2_.gravityScale = index;
             characterHead.transform.localScale = characterHeadScale;
-
+            characterFeet.transform.localScale = characterFeetScale;
            //characterHead.transform.localEulerAngles = new Vector3(0,locaEulerY,0) ;
 
 
             CharacterHandDirection();
+            CharacterFeetFunction();
         }
 
        
@@ -188,18 +200,35 @@ public class PlayerMovement_ : MonoBehaviour
         Vector3 dir = transform.position - middle.transform.position;
         dir = dir.normalized;
 
-        if (dir.x > 0)
-        {
-            characterHandScale.x = -handScaleX;
-            characterHandScale.y = handScaleY;
-        }
-        else
+        if (dir.x > switchBodyDistance)
         {
             characterHandScale.x = handScaleX;
             characterHandScale.y = handScaleY;
         }
+        else
+        {
+            characterHandScale.x = -handScaleX;
+            characterHandScale.y = handScaleY;
+        }
 
         characterHand.transform.localScale = characterHandScale;
+    }
+
+    void CharacterFeetFunction()
+    {
+        characterFeetScale.y = 0.5f;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            //feetAnimation.SetTrigger("StartMoving");
+            feetAnimation_.SetBool("Moving", true);
+        }
+        else
+        {
+            //feetAnimation.SetTrigger("StopMoving");
+            feetAnimation_.SetBool("Moving", false);
+        }
+
+
     }
 
 
@@ -214,12 +243,12 @@ public class PlayerMovement_ : MonoBehaviour
             }
        //8/ }
 
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
-        {
-            isJump = false;
-
-           // Debug.Log("Getin here");
-        }
+        //if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
+        //{
+        //    isJump = false;
+        //
+        //   // Debug.Log("Getin here");
+        //}
 
         //for (int i = 0; i < cloth.Length; i++)
         //{
@@ -282,13 +311,15 @@ public class PlayerMovement_ : MonoBehaviour
             }
         }
 
-
-
-
-
     }
 
-
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
+        {
+            isJump = false;
+        }
+    }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
