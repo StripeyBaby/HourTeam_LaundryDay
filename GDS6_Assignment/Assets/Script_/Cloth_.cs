@@ -6,10 +6,13 @@ public class Cloth_ : MonoBehaviour
 {
     [Header("Middle Place Input: ")]
     public GameObject middlePlace;
-
+    [Header("Cloth Flying Force")]
+    public float flyingForce;
 
     [Header("Script : !mportant! Don't Touch !!!")]
     public Vector3 position;
+    public float gravityScale;
+    float curTime;
 
     //bool isJump = false;
     public bool isflying = false;
@@ -19,7 +22,8 @@ public class Cloth_ : MonoBehaviour
     bool noCollide = false;
     [Header("No Collider Time: ")]
     public float setTime = 10;
-    float curTime;
+    float pressTime;
+    float pressTime2;
     private void Start()
     {
         rd2_ = GetComponent<Rigidbody2D>();
@@ -29,39 +33,122 @@ public class Cloth_ : MonoBehaviour
 
     private void Update()
     {
-      if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-      {
+        if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            //±‹√‚ø’Ã¯
+            if (rd2_ == null)
+            {
+                this.transform.parent = null;
+                rd2_ = gameObject.AddComponent<Rigidbody2D>();
+                rd2_.AddForce(Vector2.up * 5000);
+                rd2_.gravityScale = gravityScale;
+            }
+        }
 
-          //±‹√‚ø’Ã¯
-          if (rd2_ == null)
-          {
-              this.transform.parent = null;
-              rd2_ = gameObject.AddComponent<Rigidbody2D>();
-              rd2_.AddForce(Vector2.up * 5000);
-              rd2_.gravityScale = 2;
-          }
-      
-      
-      
-          //rd2_.sleepMode = RigidbodySleepMode2D.StartAwake;
-          // rd2_.bodyType = RigidbodyType2D.Dynamic;
-          //rd2_.isKinematic = false;
-      }
-      
-      if (noCollide == true)
-      {
-          curTime += Time.deltaTime;
-          if (curTime >= setTime)
-          {
-              curTime = 0;
-              noCollide = false;
-          }
-      }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (rd2_ == null)
+            {
+                this.transform.parent = null;
+                rd2_ = gameObject.AddComponent<Rigidbody2D>();
+                rd2_.AddForce(new Vector2(transform.position.x * flyingForce * 10, transform.position.y * flyingForce * 100));
+                rd2_.gravityScale = gravityScale;
+            }
+        }
+
+       // if (Input.GetKey(KeyCode.W))
+       // {
+       //     pressTime += Time.deltaTime;
+       //
+       //     if (pressTime <= 0.5f)
+       //     {
+       //
+       //         if (rd2_ == null)
+       //         {
+       //             this.transform.parent = null;
+       //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
+       //             rd2_.AddForce(new Vector2(transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
+       //             rd2_.gravityScale = gravityScale;
+       //
+       //         }
+       //     }
+       //     else
+       //     {
+       //         return;
+       //     }
+       //
+       //   
+       //
+       // }
+       //
+       //
+       // if (Input.GetKey(KeyCode.UpArrow))
+       // {
+       //     pressTime2 += Time.deltaTime;
+       //     if (pressTime <= 0.5f)
+       //     {
+       //
+       //
+       //         if (rd2_ == null)
+       //         {
+       //             this.transform.parent = null;
+       //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
+       //             rd2_.AddForce(new Vector2(-transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
+       //             rd2_.gravityScale = gravityScale;
+       //
+       //         }
+       //     }
+       //     else
+       //     {
+       //         return;
+       //     }
+       //
+       // }
+
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (rd2_ == null)
+            {
+                this.transform.parent = null;
+                rd2_ = gameObject.AddComponent<Rigidbody2D>();
+                rd2_.AddForce(new Vector2(-transform.position.x * flyingForce * 10, transform.position.y * flyingForce * 100));
+                rd2_.gravityScale = gravityScale;
+            }
+        }
+
+        if (noCollide == true)
+        {
+            curTime += Time.deltaTime;
+            if (curTime >= setTime)
+            {
+                curTime = 0;
+                noCollide = false;
+            }
+        }
     }
 
 
     public static List<Transform> allStaticCube = new List<Transform>();
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        //if (collision.gameObject.tag == "Rope" && noCollide == false)
+        //{
+        //    var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
+        //
+        //    this.transform.parent = middlePlace.transform;
+        //
+        //    Vector3 lastPos = transform.position;
+        //
+        //    this.transform.parent = middlePlace.transform;
+        //
+        //    Destroy(rd2_);
+        //    noCollide = true;
+        //
+        //}
+    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour")
@@ -70,24 +157,20 @@ public class Cloth_ : MonoBehaviour
             rd2_.mass = 5;
 
 
-           // PosManager.instance.allCube.Remove(transform.gameObject);
+            // PosManager.instance.allCube.Remove(transform.gameObject);
 
-           // PosManager.instance.SetFalse();
-           // for (int i = 0; i < PosManager.instance.allCube.Count - 1; i++)
-           // {
-           //     PosManager.instance.allAimPos[i].gameObject.SetActive(true);
-           //
-           //     
-           //
-           // }
+            // PosManager.instance.SetFalse();
+            // for (int i = 0; i < PosManager.instance.allCube.Count - 1; i++)
+            // {
+            //     PosManager.instance.allAimPos[i].gameObject.SetActive(true);
+            //
+            //     
+            //
+            // }
         }
 
         if (collision.gameObject.tag == "Rope" && noCollide == false)
         {
-
-
-
-          
 
             var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
 
@@ -115,12 +198,12 @@ public class Cloth_ : MonoBehaviour
             //rd2_.mass = 1;
         }
 
-       // if (collision.gameObject.CompareTag("Rope"))
-       // {
-       //     this.transform.parent = null;
-       //     rd2_ = gameObject.AddComponent<Rigidbody2D>();
-       //     rd2_.gravityScale = 2;
-       // }
+        //if (collision.gameObject.CompareTag("Rope"))
+        //{
+        //    this.transform.parent = null;
+        //    rd2_ = gameObject.AddComponent<Rigidbody2D>();
+        //    rd2_.gravityScale = 8;
+        //}
 
     }
 
@@ -132,25 +215,25 @@ public class Cloth_ : MonoBehaviour
             wP_.itemCount++;
         }
 
-       //if (other.tag == "Rope" && noCollide == false)
-       //{
-       //
-       //
-       //
-       //
-       //
-       //    var a = other.gameObject.GetComponent<EdgeCollider2D>().points;
-       //
-       //    this.transform.parent = middlePlace.transform;
-       //
-       //    Vector3 lastPos = transform.position;
-       //
-       //    this.transform.parent = middlePlace.transform;
-       //
-       //    Destroy(rd2_);
-       //    noCollide = true;
-       //
-       //}
+        //if (other.tag == "Rope" && noCollide == false)
+        //{
+        //
+        //
+        //
+        //
+        //
+        //    var a = other.gameObject.GetComponent<EdgeCollider2D>().points;
+        //
+        //    this.transform.parent = middlePlace.transform;
+        //
+        //    Vector3 lastPos = transform.position;
+        //
+        //    this.transform.parent = middlePlace.transform;
+        //
+        //    Destroy(rd2_);
+        //    noCollide = true;
+        //
+        //}
     }
     private void OnTriggerExit2D(Collider2D other)
     {
