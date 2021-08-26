@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +12,7 @@ public class StartPage_ : MonoBehaviour
     void Start()
     {
         //turnOnBlackImage = true;
-        blackImage_ = blackImage.GetComponent<BlackImageFunction_>();
+       // blackImage_ = blackImage.GetComponent<BlackImageFunction_>();
         //blackImage_.Switch(false);
       //  blackImage_.TurnWhite();
     }
@@ -21,23 +20,23 @@ public class StartPage_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {  //
-         blackImage_.Switch(turnOnBlackImage);
+      //   blackImage_.Switch(turnOnBlackImage);
        //
         //Debug.Log(turnOnBlackImage);
     }
 
     public void StartGame() 
     {
-        turnOnBlackImage = true;
+       // turnOnBlackImage = true;
         //blackImage_.Switch(turnOnBlackImage);
      
 
-        Invoke("StartLoadingGame", readyTime);
+       // Invoke("StartLoadingGame", readyTime);
 
     }
     void StartLoadingGame() 
     {
-         SceneManager.LoadScene("SampleScene");
+       //  SceneManager.LoadScene("MainLevelScene");
     }
 
 }
