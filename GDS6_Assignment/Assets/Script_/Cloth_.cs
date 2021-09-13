@@ -30,93 +30,101 @@ public class Cloth_ : MonoBehaviour
         //bC2_ = GetComponent<BoxCollider2D>();
     }
     int testIndex;
+    
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            //±‹√‚ø’Ã¯
-            if (rd2_ == null)
-            {
-                this.transform.parent = null;
-                rd2_ = gameObject.AddComponent<Rigidbody2D>();
-                rd2_.AddForce(Vector2.up * 5000);
-                rd2_.gravityScale = gravityScale;
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.UpArrow))
+        // {
+        //     //±‹√‚ø’Ã¯
+        //     if (rd2_ == null)
+        //     {
+        //         this.transform.parent = null;
+        //         rd2_ = gameObject.AddComponent<Rigidbody2D>();
+        //         rd2_.AddForce(Vector2.up * 5000);
+        //         rd2_.gravityScale = gravityScale;
+        //     }
+        // }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
             if (rd2_ == null)
             {
+
                 this.transform.parent = null;
                 rd2_ = gameObject.AddComponent<Rigidbody2D>();
                 rd2_.AddForce(new Vector2(transform.position.x * flyingForce * 10, transform.position.y * flyingForce * 100));
                 rd2_.gravityScale = gravityScale;
+
+                
             }
         }
+      
 
-       // if (Input.GetKey(KeyCode.W))
-       // {
-       //     pressTime += Time.deltaTime;
-       //
-       //     if (pressTime <= 0.5f)
-       //     {
-       //
-       //         if (rd2_ == null)
-       //         {
-       //             this.transform.parent = null;
-       //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
-       //             rd2_.AddForce(new Vector2(transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
-       //             rd2_.gravityScale = gravityScale;
-       //
-       //         }
-       //     }
-       //     else
-       //     {
-       //         return;
-       //     }
-       //
-       //   
-       //
-       // }
-       //
-       //
-       // if (Input.GetKey(KeyCode.UpArrow))
-       // {
-       //     pressTime2 += Time.deltaTime;
-       //     if (pressTime <= 0.5f)
-       //     {
-       //
-       //
-       //         if (rd2_ == null)
-       //         {
-       //             this.transform.parent = null;
-       //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
-       //             rd2_.AddForce(new Vector2(-transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
-       //             rd2_.gravityScale = gravityScale;
-       //
-       //         }
-       //     }
-       //     else
-       //     {
-       //         return;
-       //     }
-       //
-       // }
+        #region
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     pressTime += Time.deltaTime;
+        //
+        //     if (pressTime <= 0.5f)
+        //     {
+        //
+        //         if (rd2_ == null)
+        //         {
+        //             this.transform.parent = null;
+        //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
+        //             rd2_.AddForce(new Vector2(transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
+        //             rd2_.gravityScale = gravityScale;
+        //
+        //         }
+        //     }
+        //     else
+        //     {
+        //         return;
+        //     }
+        //
+        //   
+        //
+        // }
+        //
+        //
+        // if (Input.GetKey(KeyCode.UpArrow))
+        // {
+        //     pressTime2 += Time.deltaTime;
+        //     if (pressTime <= 0.5f)
+        //     {
+        //
+        //
+        //         if (rd2_ == null)
+        //         {
+        //             this.transform.parent = null;
+        //             rd2_ = gameObject.AddComponent<Rigidbody2D>();
+        //             rd2_.AddForce(new Vector2(-transform.position.x * flyingForce * 50, transform.position.y * flyingForce * 500));
+        //             rd2_.gravityScale = gravityScale;
+        //
+        //         }
+        //     }
+        //     else
+        //     {
+        //         return;
+        //     }
+        //
+        // }
 
-
+        #endregion
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (rd2_ == null)
             {
                 this.transform.parent = null;
                 rd2_ = gameObject.AddComponent<Rigidbody2D>();
-                rd2_.AddForce(new Vector2(-transform.position.x * flyingForce * 10, transform.position.y * flyingForce * 100));
+                rd2_.AddForce(new Vector2(-transform.position.x * flyingForce*10 , transform.position.y * flyingForce*100));
                 rd2_.gravityScale = gravityScale;
+
             }
         }
-
+       
+        
         if (noCollide == true)
         {
             curTime += Time.deltaTime;

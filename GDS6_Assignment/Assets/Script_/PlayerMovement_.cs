@@ -25,9 +25,12 @@ public class PlayerMovement_ : MonoBehaviour
 
     [Header("Character Head ")]
     public GameObject characterHead;
+    [Header("Character body")]
+    public GameObject characterbody;
     [Header("Head Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
     public float headSize;
     Vector2 characterHeadScale;
+    Vector2 characterbodyScale;
     Vector2 characterHandScale;
     [Header("Feet Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
     public GameObject characterFeet;
@@ -129,6 +132,7 @@ public class PlayerMovement_ : MonoBehaviour
               locaEulerY= -180;
 
                 characterHeadScale.x = headSize;
+                //characterbodyScale.x = headSize;
                 characterFeetScale.x = feetSize;
                 if (dir > 0)
                 {
@@ -144,6 +148,7 @@ public class PlayerMovement_ : MonoBehaviour
             {
                 locaEulerY = 0;
                 characterHeadScale.x = -headSize;
+                //characterbodyScale.x = -headSize;
                 characterFeetScale.x = -feetSize;
                 if (dir <= 0)
                 {
@@ -183,6 +188,7 @@ public class PlayerMovement_ : MonoBehaviour
 
             rb2_.gravityScale = index;
             characterHead.transform.localScale = characterHeadScale;
+            characterbody.transform.localScale = characterHeadScale;
             characterFeet.transform.localScale = characterFeetScale;
            //characterHead.transform.localEulerAngles = new Vector3(0,locaEulerY,0) ;
 
@@ -219,6 +225,7 @@ public class PlayerMovement_ : MonoBehaviour
         characterFeetScale.y = 0.5f;
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
+            
             //feetAnimation.SetTrigger("StartMoving");
             feetAnimation_.SetBool("Moving", true);
         }
@@ -228,7 +235,7 @@ public class PlayerMovement_ : MonoBehaviour
             feetAnimation_.SetBool("Moving", false);
         }
 
-
+      
     }
 
 

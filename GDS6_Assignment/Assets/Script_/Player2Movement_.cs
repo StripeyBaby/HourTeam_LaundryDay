@@ -29,9 +29,12 @@ public class Player2Movement_ : MonoBehaviour
 
     [Header("Character Head ")]
     public GameObject characterHead;
+    [Header("Character Body")]
+    public GameObject characterBody;
     [Header("Head Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
     public float headSize;
     Vector2 characterHeadScale;
+    Vector2 characterBodyScale;
     Vector2 characterHandScale;
     [Header("Feet Size: !mportant! Must be same as in the transform of Scale of X value!!!")]
     public GameObject characterFeet;
@@ -120,6 +123,7 @@ public class Player2Movement_ : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 characterHeadScale.x = headSize;
+                //characterBodyScale.x = headSize;
                 characterFeetScale.x = feetSize;
                 if (dir <= 0)
                 {
@@ -136,6 +140,7 @@ public class Player2Movement_ : MonoBehaviour
             {
 
                 characterHeadScale.x = -headSize;
+                //characterBodyScale.x = -headSize;
                 characterFeetScale.x = -feetSize;
                 if (dir > 0)
                 {
@@ -177,6 +182,7 @@ public class Player2Movement_ : MonoBehaviour
             rb2.gravityScale = index;
             characterHead.transform.localScale = characterHeadScale;
             characterFeet.transform.localScale = characterFeetScale;
+            characterBody.transform.localScale = characterHeadScale;
 
             CharacterHandDirection();
             CharacterFeetFunction();
