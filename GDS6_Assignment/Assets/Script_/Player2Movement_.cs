@@ -65,6 +65,7 @@ public class Player2Movement_ : MonoBehaviour
     public GameObject pivot;
     public float handScaleX, handScaleY;
     public float gravityScale;
+  
 
     PlayerMovement_ character1_;
     Rigidbody2D rb2;
@@ -90,7 +91,7 @@ public class Player2Movement_ : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Is Jump : " + isJump2);
+       // Debug.Log("Is Jump : " + isJump2);
      
      
     }

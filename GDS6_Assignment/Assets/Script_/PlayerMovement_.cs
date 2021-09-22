@@ -63,7 +63,7 @@ public class PlayerMovement_ : MonoBehaviour
     public float handScaleX, handScaleY;
     public float switchBodyDistance;
     public float gravityScale;
-
+    public bool posIsSwitch = false;
 
     Rigidbody2D rb2_;
     SpriteRenderer sr;
@@ -91,13 +91,13 @@ public class PlayerMovement_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("dfhajshfddsfhsakdfhjksdafh");
 
-
-       // characterHead.transform.position = pivot.transform.position;
+        // characterHead.transform.position = pivot.transform.position;
         //Debug.Log(characterHead.transform.position);
 
         //CharacterMovingFunction1();
-       // Debug.Log(isJump);
+        // Debug.Log(isJump);
     }
 
     
@@ -210,9 +210,11 @@ public class PlayerMovement_ : MonoBehaviour
         {
             characterHandScale.x = handScaleX;
             characterHandScale.y = handScaleY;
+            posIsSwitch = false;
         }
         else
         {
+            posIsSwitch = true;
             characterHandScale.x = -handScaleX;
             characterHandScale.y = handScaleY;
         }
