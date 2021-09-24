@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9eb309bfd5fafce4a973774a34e45ee3, type: 3}
-  m_Color: {r: 0.22642016, g: 0.9529412, b: 0.20392156, a: 1}
+  m_Color: {r: 0.20392156, g: 0.34636658, b: 0.9529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,12 +126,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8612143166709338808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +145,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   middlePlace: {fileID: 0}
+  flyingForce: 2
+  movingspeed: 3
+  upDownDistance: 2
+  maxUpDownDistance: 2
+  movingFreq: 1
   position: {x: 0, y: 0, z: 0}
+  pM_: {fileID: 0}
+  gravityScale: 10
   isflying: 0
   setTime: 3
