@@ -98,9 +98,13 @@ public class PlayerMovement_ : MonoBehaviour
 
         //CharacterMovingFunction1();
         // Debug.Log(isJump);
+
+        CheckVerticalDis.couldTan2 = isJump;
     }
 
-    
+
+
+
     public void Player1AliveFunction() 
     {
        
@@ -243,13 +247,15 @@ public class PlayerMovement_ : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       // for (int i = 0; i < cloth.Length; i++)
+
+        // for (int i = 0; i < cloth.Length; i++)
         //{
-            if (collision.gameObject.tag == clothNum)
+        if (collision.gameObject.tag == clothNum)
             {
                isJump = false;
+           
 
-            }
+        }
        //8/ }
 
         //if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
@@ -284,6 +290,7 @@ public class PlayerMovement_ : MonoBehaviour
                 //float dirx_ = (character2.transform.position.x + character1.transform.position.x) / 2;
                 //cloth[i].transform.position = new Vector2(dirx_, cloth[i].transform.position.y + 10);
                 collision.transform.position = middle.transform.position;
+                collision.transform.parent = middle.transform;
             }
         }
 
@@ -327,6 +334,7 @@ public class PlayerMovement_ : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
         {
             isJump = false;
+            
         }
     }
 
@@ -335,8 +343,10 @@ public class PlayerMovement_ : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour")
         {
             isJump = true;
-
+            
         }
+
+        
 
 
     }

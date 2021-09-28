@@ -631,11 +631,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8642144732971541186, guid: 5b404c165bf03694db51ba9a85439d52, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8642144732971541186, guid: 5b404c165bf03694db51ba9a85439d52, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -6
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 8642144732971541186, guid: 5b404c165bf03694db51ba9a85439d52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -723,6 +723,10 @@ PrefabInstance:
     - target: {fileID: 2497537128893998915, guid: 0b426ebd55246fd47890fb9208c0d1eb, type: 3}
       propertyPath: m_Name
       value: Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497537128893998915, guid: 0b426ebd55246fd47890fb9208c0d1eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b426ebd55246fd47890fb9208c0d1eb, type: 3}

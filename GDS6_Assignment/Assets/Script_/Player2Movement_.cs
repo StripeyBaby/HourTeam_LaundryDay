@@ -91,12 +91,13 @@ public class Player2Movement_ : MonoBehaviour
     void Update()
     {
 
-       // Debug.Log("Is Jump : " + isJump2);
-     
-     
+        // Debug.Log("Is Jump : " + isJump2);
+        CheckVerticalDis.couldTan1 = isJump2;
+
     }
+ 
 
-
+  
     public void Player2AliveFunction() 
     {
         
@@ -213,7 +214,7 @@ public class Player2Movement_ : MonoBehaviour
     }
 
     void CharacterFeetFunction()
-    {
+    { 
         characterFeetScale.y = 0.5f;
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -229,6 +230,8 @@ public class Player2Movement_ : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
+        CheckVerticalDis.couldTan1 = true;
+
         //for (int i = 0; i < cloth.Length; i++)
         //{
         //    if (collision.gameObject.tag == clothNum[i])
@@ -240,6 +243,7 @@ public class Player2Movement_ : MonoBehaviour
         if (collision.gameObject.tag == clothNum)
         {
             isJump2 = false;
+           
 
         }
 
@@ -320,6 +324,7 @@ public class Player2Movement_ : MonoBehaviour
                 //float dirx_ = (character2.transform.position.x + character1.transform.position.x) / 2;
                 //cloth[i].transform.position = new Vector2(dirx_, cloth[i].transform.position.y + 10);
                 collision.transform.position = character1_.middle.transform.position;
+                collision.transform.parent = character1_.middle.transform;
             }
         }
     }
@@ -329,6 +334,7 @@ public class Player2Movement_ : MonoBehaviour
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Flour" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bridge")
         { 
             isJump2 = false;
+           
         }
 
     }
@@ -339,12 +345,15 @@ public class Player2Movement_ : MonoBehaviour
         {
             // Debug.Log("U have get in here");
             isJump2 = true;
+           
             // isJump2 = true;
             // canGoingDown = true;
 
         }
 
-     
+        
+
+
 
 
     }

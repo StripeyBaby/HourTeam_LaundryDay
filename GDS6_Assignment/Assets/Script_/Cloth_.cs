@@ -31,6 +31,8 @@ public class Cloth_ : MonoBehaviour
     public float setTime = 10;
     float pressTime;
     float pressTime2;
+
+  
     private void Start()
     {
         rd2_ = GetComponent<Rigidbody2D>();
@@ -65,12 +67,17 @@ public class Cloth_ : MonoBehaviour
         // {
         //     hasbeenCollided = true;
         // }
-        Debug.Log(pM_.posIsSwitch);
+
+
+
+
+       // Debug.Log(pM_.posIsSwitch);
         if (hasbeenCollided == false)
         {
             //rd2_.isKinematic = false;
             //rd2_.mass = 0;
             //rd2_.gravityScale = 0;
+           
             Destroy(rd2_);
             upDownDistance -= movingFreq * Time.deltaTime;
             if (upDownDistance <= 0)
@@ -88,7 +95,7 @@ public class Cloth_ : MonoBehaviour
                 transform.Translate(-transform.up * Time.deltaTime * movingspeed);
             }
         }
-        else
+        else //if(CheckVerticalDis.maxY<transform.position.y)
         {
             //rd2_ = gameObject.AddComponent<Rigidbody2D>();
             // rd2_.gravityScale = gravityScale;
@@ -97,28 +104,29 @@ public class Cloth_ : MonoBehaviour
 
             if (pM_.posIsSwitch == true)
             {
-                 if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    if (rd2_ == null)
-                    {
-                        this.transform.parent = null;
-                        rd2_ = gameObject.AddComponent<Rigidbody2D>();
-                        rd2_.AddForce(transform.up * 5000);
-                        rd2_.gravityScale = gravityScale;
-                    }
-                }
+               //if (Input.GetKeyDown(KeyCode.W) && Input.GetKeyDown(KeyCode.UpArrow))
+               //{
+               //    if (rd2_ == null)
+               //    {
+               //        this.transform.parent = null;
+               //        rd2_ = gameObject.AddComponent<Rigidbody2D>();
+               //        rd2_.AddForce(transform.up * 5000);
+               //        rd2_.gravityScale = gravityScale;
+               //    }
+               //}
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     if (rd2_ == null)
                     {
-
+                       
                         this.transform.parent = null;
                         rd2_ = gameObject.AddComponent<Rigidbody2D>();
                         //var index = transform.position.normalized;
                         //rd2_.AddForce(new Vector2(index.x * flyingForce * 5000, index.y * flyingForce * 20000));
                         rd2_.gravityScale = gravityScale;
-                        rd2_.AddForce(transform.right * 5000);
-                        rd2_.AddForce(transform.up * 20000);
+                       // rd2_.velocity = Vector2.zero;
+                        rd2_.AddForce(Vector3.right* 5000);
+                        rd2_.AddForce(Vector3.up * 20000);
 
                     }
                 }
@@ -131,9 +139,10 @@ public class Cloth_ : MonoBehaviour
                         rd2_ = gameObject.AddComponent<Rigidbody2D>();
                         //var index = transform.position.normalized;
                         //rd2_.AddForce(new Vector2(-index.x * flyingForce * 5000, index.y * flyingForce * 20000));
+                       // rd2_.velocity = Vector2.zero;
                         rd2_.gravityScale = gravityScale;
-                        rd2_.AddForce(-transform.right * 5000);
-                        rd2_.AddForce(transform.up * 20000);
+                        rd2_.AddForce(-Vector3.right * 5000);
+                        rd2_.AddForce(Vector3.up * 20000);
 
                     }
                 }
@@ -150,8 +159,8 @@ public class Cloth_ : MonoBehaviour
                         //var index = transform.position.normalized;
                         //rd2_.AddForce(new Vector2(index.x * flyingForce * 5000, index.y * flyingForce * 20000));
                         rd2_.gravityScale = gravityScale;
-                        rd2_.AddForce(transform.right * 5000);
-                        rd2_.AddForce(transform.up * 20000);
+                        rd2_.AddForce(Vector3.right * 5000);
+                        rd2_.AddForce(Vector3.up * 20000);
 
 
                     }
@@ -166,8 +175,8 @@ public class Cloth_ : MonoBehaviour
                         //var index = transform.position.normalized;
                         //rd2_.AddForce(new Vector2(-index.x * flyingForce * 5000, index.y * flyingForce * 20000));
                         rd2_.gravityScale = gravityScale;
-                        rd2_.AddForce(-transform.right * 5000);
-                        rd2_.AddForce(transform.up * 20000);
+                        rd2_.AddForce(-Vector3.right * 5000);
+                        rd2_.AddForce(Vector3.up * 20000);
 
                     }
                 }
