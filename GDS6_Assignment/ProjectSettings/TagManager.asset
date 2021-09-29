@@ -19,6 +19,8 @@ TagManager:
   - Bridge
   - Cloth6
   - Ladder
+  - StartMenuButtonPlay
+  - StartMenuButtonExit
   layers:
   - Default
   - TransparentFX
