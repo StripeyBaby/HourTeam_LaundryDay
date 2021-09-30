@@ -24,10 +24,13 @@ public class PauseMenu_ : MonoBehaviour
     }
     void Update()
     {
+        //Debug.Log(GameIsPaused);
         if (lockFunction == false)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Debug.Log("Get it ");
+
                 if (!GameIsPaused)
                 {
                     //Resume();
@@ -74,15 +77,12 @@ public class PauseMenu_ : MonoBehaviour
        
     }
 
-    void Menu()
-    {
-        //Go to menu
-        
-        SceneManager.LoadScene("MenuScene");
-        
-    }
+    public void Restart()
+    { SceneManager.LoadScene("FinalLevelScene"); GameIsPaused = true; }
+    public void Menu()
+    { SceneManager.LoadScene("MenuScene"); }
 
 
-    public void LoadMenu() { Debug.Log("Go to the Menu"); }
-    public void QuitGame() { Debug.Log("Quit game"); }
+    //public void LoadMenu() { Debug.Log("Go to the Menu"); }
+    public void QuitGame() { Application.Quit(); }
 }

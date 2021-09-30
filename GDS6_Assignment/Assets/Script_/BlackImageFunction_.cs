@@ -7,7 +7,7 @@ public class BlackImageFunction_ : MonoBehaviour
 {
     public GameObject gb;
     Image image_;
-    float alpha = 0;
+    public float alpha = 1;
 
  
     // Start is called before the first frame update
@@ -19,13 +19,14 @@ public class BlackImageFunction_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(alpha);
+        //Debug.Log("colour:          " +alpha);
 
        
     }
   
     public void Switch(bool index) 
    {
+        
       //if (index != true)
       //{
       //    index = true;
@@ -44,7 +45,7 @@ public class BlackImageFunction_ : MonoBehaviour
            TurnWhite();
        }
    }
-     void TurnBlack() 
+      void TurnBlack() 
     {
         gb.SetActive(true);
         image_.color = new Color(0, 0, 0, alpha);
@@ -57,7 +58,7 @@ public class BlackImageFunction_ : MonoBehaviour
         }
     }
 
-     void TurnWhite() 
+      void TurnWhite() 
     {
         image_.color = new Color(0, 0, 0, alpha);
         alpha -= Time.deltaTime;

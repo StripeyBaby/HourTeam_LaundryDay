@@ -35,6 +35,6 @@ public class GameOverFunction_ : MonoBehaviour
 
     public void ReStartFunction() 
     {
-        SceneManager.LoadScene("MainLevelScene");
+        SceneManager.LoadScene("FinalLevelScene");
     }
 }

@@ -58,6 +58,7 @@ public class Player2Movement_ : MonoBehaviour
 
     [Header("Player Keyboard Control: ")]
     public bool lockMoving = false;
+    public bool lockControl = false;
 
     [Header("Scrpit: !mportant! Don't touch!!!")]
     public Rope_ rope;
@@ -122,7 +123,7 @@ public class Player2Movement_ : MonoBehaviour
             float dir = character2.transform.position.x - character1.transform.position.x;
        
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) && lockControl == false)
             {
                 characterHeadScale.x = headSize;
                 //characterBodyScale.x = headSize;
@@ -138,7 +139,7 @@ public class Player2Movement_ : MonoBehaviour
 
             }
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) && lockControl == false)
             {
 
                 characterHeadScale.x = -headSize;
@@ -159,12 +160,12 @@ public class Player2Movement_ : MonoBehaviour
             {
 
                 index = 0;
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.UpArrow) && lockControl == false)
                 {
                     transform.Translate(transform.up * Time.deltaTime * speed);
                 }
 
-                if (Input.GetKey(KeyCode.DownArrow))
+                if (Input.GetKey(KeyCode.DownArrow) && lockControl == false)
                 {
                     transform.Translate(-transform.up * Time.deltaTime * speed);
                 }
@@ -172,7 +173,7 @@ public class Player2Movement_ : MonoBehaviour
             else
             {
                 index = gravityScale;
-                if (Input.GetKeyDown(KeyCode.UpArrow) && isJump2 == false)
+                if (Input.GetKeyDown(KeyCode.UpArrow) && isJump2 == false && lockControl == false)
                 {
                     //rb2.AddForce(Vector2.up * jump);
                     rb2.AddForce(new Vector2(rb2.velocity.x, jump * 1000));

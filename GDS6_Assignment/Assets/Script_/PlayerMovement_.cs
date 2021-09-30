@@ -54,6 +54,7 @@ public class PlayerMovement_ : MonoBehaviour
 
     [Header("Player Keyboard Control: ")]
     public bool lockMoving = false;
+    public bool lockControl = false;
 
     [Header("Scrpit: !mportant! Don't touch!!!")]
     public Rope_ rope;
@@ -128,9 +129,10 @@ public class PlayerMovement_ : MonoBehaviour
         
         if (lockMoving == false)
         {
+         
             float index; // transfer the gravity scale value;
             float dir = character2.transform.position.x - character1.transform.position.x;
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && lockControl == false)
             {
 
               locaEulerY= -180;
@@ -148,7 +150,7 @@ public class PlayerMovement_ : MonoBehaviour
                 transform.Translate(-transform.right * Time.deltaTime * speed);
 
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && lockControl == false)
             {
                 locaEulerY = 0;
                 characterHeadScale.x = -headSize;
@@ -169,12 +171,12 @@ public class PlayerMovement_ : MonoBehaviour
             {
                 index = 0;
                 rb2_.gravityScale = 0;
-                if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.W) && lockControl == false)
                 {
                     transform.Translate(transform.up * Time.deltaTime * speed);
                 }
             
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) && lockControl == false)
                 {
                     transform.Translate(-transform.up * Time.deltaTime * speed);
                 }
@@ -183,7 +185,7 @@ public class PlayerMovement_ : MonoBehaviour
             else
             {
               index = gravityScale;
-              if (Input.GetKeyDown(KeyCode.W) && isJump == false)
+              if (Input.GetKeyDown(KeyCode.W) && isJump == false && lockControl == false)
               {
                   rb2_.AddForce(new Vector2(rb2_.velocity.x, jump * 1000));
                   isJump = true;
