@@ -13,6 +13,18 @@ public class PauseMenu_ : MonoBehaviour
     public Player2Movement_ p2M;
     public bool lockFunction = false;
 
+    [Header("Buttons")]
+    public GameObject restartB;
+    public GameObject resumeB;
+    public GameObject MenuB;
+    public GameObject OptionB;
+    public GameObject returnB;
+    public GameObject MusicSlider;
+
+    bool turnToOptions = false;
+
+    public AudioSource bgm;
+
     //public bool stopMoving = false;
     //public HleathSystem healthSystem;
 
@@ -38,6 +50,7 @@ public class PauseMenu_ : MonoBehaviour
                     Resume();
                     pM.lockMoving = false;
                     p2M.lockMoving = false;
+                    turnToOptions = false; 
                     // hS.stopMoving = false;
                 }
                 else
@@ -52,7 +65,26 @@ public class PauseMenu_ : MonoBehaviour
                 }
             }
         }
- 
+
+
+        if (turnToOptions == true)
+        {
+            returnB.SetActive(true);
+            MusicSlider.SetActive(true);
+            restartB.SetActive(false);
+            resumeB.SetActive(false);
+            MenuB.SetActive(false);
+            OptionB.SetActive(false);
+        }
+        else
+        {
+            returnB.SetActive(false);
+            MusicSlider.SetActive(false);
+            restartB.SetActive(true);
+            resumeB.SetActive(true);
+            MenuB.SetActive(true);
+            OptionB.SetActive(true);
+        }
 
         //Debug.Log("gameisPaused : " + GameIsPaused);
     }
@@ -78,10 +110,24 @@ public class PauseMenu_ : MonoBehaviour
     }
 
     public void Restart()
-    { SceneManager.LoadScene("FinalLevelScene"); GameIsPaused = true; }
+    { SceneManager.LoadScene("FinalLevelScene"); GameIsPaused = true; Time.timeScale = 1; }
     public void Menu()
-    { SceneManager.LoadScene("MenuScene"); }
+    { SceneManager.LoadScene("StartScene"); Time.timeScale = 1; }
 
+    public void Options() 
+    {
+        turnToOptions = true;
+    }
+
+    public void Return()
+    {
+        turnToOptions = false;
+    }
+
+    public void MusicValue(float index) 
+    {
+        bgm.volume = index;
+    }
 
     //public void LoadMenu() { Debug.Log("Go to the Menu"); }
     public void QuitGame() { Application.Quit(); }

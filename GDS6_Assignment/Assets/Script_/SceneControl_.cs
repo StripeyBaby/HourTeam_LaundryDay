@@ -29,19 +29,21 @@ public class SceneControl_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        blackImage_.Switch(turnOnBlackImage);
+         blackImage_.Switch(turnOnBlackImage);
+        
+         Debug.Log("Switch on :          "+turnOnBlackImage);
+        
+         if (blackImage_.alpha <= 0)
+         {
+             coldTime += Time.deltaTime;
+         }
+        
+         if (coldTime >= setColdTime)
+         {
+             coldTime = setColdTime;
+             cameraAnime_.startMoving = true;
+         }
 
-        Debug.Log("Switch on :          "+turnOnBlackImage);
-
-        if (blackImage_.alpha <= 0)
-        {
-            coldTime += Time.deltaTime;
-        }
-
-        if (coldTime >= setColdTime)
-        {
-            coldTime = setColdTime;
-            cameraAnime_.startMoving = true;
-        }
+        //cameraAnime_.startMoving = true;
     }
 }

@@ -21,6 +21,7 @@ TagManager:
   - Ladder
   - StartMenuButtonPlay
   - StartMenuButtonExit
+  - vertical Edge
   layers:
   - Default
   - TransparentFX

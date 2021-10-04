@@ -66,6 +66,7 @@ public class PlayerMovement_ : MonoBehaviour
     public float gravityScale;
     public bool posIsSwitch = false;
 
+
     Rigidbody2D rb2_;
     SpriteRenderer sr;
     HleathSystem healthSystem_;
@@ -294,6 +295,8 @@ public class PlayerMovement_ : MonoBehaviour
                 collision.transform.position = middle.transform.position;
                 collision.transform.parent = middle.transform;
             }
+
+         
         }
 
         if (collision.gameObject.tag == "DeathPool")

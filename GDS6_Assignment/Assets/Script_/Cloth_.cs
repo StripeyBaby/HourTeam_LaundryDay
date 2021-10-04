@@ -21,6 +21,9 @@ public class Cloth_ : MonoBehaviour
     public float gravityScale;
     float curTime;
     bool hasbeenCollided;
+
+    public AudioSource pickedAudio;
+    bool hasPlayed = false;
     //bool isJump = false;
     public bool isflying = false;
     Rigidbody2D rd2_;
@@ -28,7 +31,7 @@ public class Cloth_ : MonoBehaviour
 
     bool noCollide = false;
     [Header("No Collider Time: ")]
-    public float setTime = 10;
+    public float setTime = 2;
     float pressTime;
     float pressTime2;
 
@@ -68,7 +71,7 @@ public class Cloth_ : MonoBehaviour
         //     hasbeenCollided = true;
         // }
 
-
+   
 
 
        // Debug.Log(pM_.posIsSwitch);
@@ -209,6 +212,14 @@ public class Cloth_ : MonoBehaviour
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             hasbeenCollided = true;
+            Debug.Log("get in here");
+
+            if (hasPlayed == false)
+            {
+                pickedAudio.Play();
+                hasPlayed = true;
+            }
+            
         }
 
         //if (collision.gameObject.tag == "Rope" && noCollide == false)
@@ -246,10 +257,28 @@ public class Cloth_ : MonoBehaviour
             // }
         }
 
-        if (collision.gameObject.tag == "Rope" && noCollide == false)
-        {
+        //if (collision.gameObject.tag == "Rope" && noCollide == false)
+        //{
 
-            var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
+
+        //    var a = collision.gameObject.GetComponent<EdgeCollider2D>().points;
+
+        //    this.transform.parent = middlePlace.transform;
+
+        //    Vector3 lastPos = transform.position;
+
+        //    this.transform.parent = middlePlace.transform;
+
+        //    Destroy(rd2_);
+        //    noCollide = true;
+        //}
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Rope" && noCollide == false)
+        {
+            var a = other.gameObject.GetComponent<EdgeCollider2D>().points;
 
             this.transform.parent = middlePlace.transform;
 
@@ -259,10 +288,8 @@ public class Cloth_ : MonoBehaviour
 
             Destroy(rd2_);
             noCollide = true;
-
         }
     }
-
 
 
     private void OnCollisionExit2D(Collision2D collision)
