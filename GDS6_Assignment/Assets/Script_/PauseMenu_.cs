@@ -20,10 +20,13 @@ public class PauseMenu_ : MonoBehaviour
     public GameObject OptionB;
     public GameObject returnB;
     public GameObject MusicSlider;
+    public GameObject EffectMusicSlider;
 
     bool turnToOptions = false;
 
+    [Header("Audior")]
     public AudioSource bgm;
+    public AudioSource effectmusic;
 
     //public bool stopMoving = false;
     //public HleathSystem healthSystem;
@@ -71,6 +74,7 @@ public class PauseMenu_ : MonoBehaviour
         {
             returnB.SetActive(true);
             MusicSlider.SetActive(true);
+            EffectMusicSlider.SetActive(true);
             restartB.SetActive(false);
             resumeB.SetActive(false);
             MenuB.SetActive(false);
@@ -81,6 +85,7 @@ public class PauseMenu_ : MonoBehaviour
             returnB.SetActive(false);
             MusicSlider.SetActive(false);
             restartB.SetActive(true);
+            EffectMusicSlider.SetActive(false);
             resumeB.SetActive(true);
             MenuB.SetActive(true);
             OptionB.SetActive(true);
@@ -127,6 +132,11 @@ public class PauseMenu_ : MonoBehaviour
     public void MusicValue(float index) 
     {
         bgm.volume = index;
+    }
+
+    public void EffectMusicValue(float index)
+    {
+        effectmusic.volume = index;
     }
 
     //public void LoadMenu() { Debug.Log("Go to the Menu"); }

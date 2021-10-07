@@ -39,11 +39,24 @@ public class StartPage_ : MonoBehaviour
         Invoke("StartLoadingGame", readyTime);
 
     }
+
+    public void CreditPage()
+    {
+        turnOnBlackImage = true;
+        Invoke("StartLoadingCreditScene", readyTime);
+    }
+
+    void StartLoadingCreditScene() 
+    {
+        SceneManager.LoadScene("CreditScene");
+    }
+
     void StartLoadingGame() 
     {
         SceneManager.LoadScene("FinalLevelScene");
     }
 
+  
     public void QuitTheGame() 
     {
         Application.Quit();
