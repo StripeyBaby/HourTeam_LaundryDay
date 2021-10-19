@@ -5622,6 +5622,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1329155255, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329155255, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.6000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455622673, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1587857850, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
       propertyPath: cameraAnime
       value: 
@@ -5695,6 +5707,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 903009759}
     - target: {fileID: 7353320450496528548, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+      propertyPath: bgmSlider
+      value: 
+      objectReference: {fileID: 1684972657}
+    - target: {fileID: 7353320450496528548, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
       propertyPath: textImage
       value: 
       objectReference: {fileID: 2147055926}
@@ -5706,6 +5722,10 @@ PrefabInstance:
       propertyPath: effectmusic
       value: 
       objectReference: {fileID: 872499631}
+    - target: {fileID: 7353320450496528548, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+      propertyPath: effectSlider
+      value: 
+      objectReference: {fileID: 2118441853}
     - target: {fileID: 7353320450496528548, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
       propertyPath: puaseTextImage
       value: 
@@ -6114,6 +6134,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4180687729761293786, guid: 879b239c1d1fc17419a782f539172951, type: 3}
   m_PrefabInstance: {fileID: 1669152873}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1684972657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1455622673, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+  m_PrefabInstance: {fileID: 1587857845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1779144504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6115834102188297629, guid: 09072c67ece238f43b8b9ba0961413b9, type: 3}
@@ -7172,6 +7203,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2118441853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 744188488, guid: f657af8ab2be850438be04fdac02ad7b, type: 3}
+  m_PrefabInstance: {fileID: 1587857845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2131815755
 GameObject:
   m_ObjectHideFlags: 0

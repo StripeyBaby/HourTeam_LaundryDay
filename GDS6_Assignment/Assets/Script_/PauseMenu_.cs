@@ -31,9 +31,11 @@ public class PauseMenu_ : MonoBehaviour
 
     bool turnToOptions = false;
 
-    [Header("Audior")]
+    [Header("Audio")]
     public AudioSource bgm;
+    public Slider bgmSlider;
     public AudioSource effectmusic;
+    public Slider effectSlider;
 
     //public bool stopMoving = false;
     //public HleathSystem healthSystem;
@@ -47,6 +49,22 @@ public class PauseMenu_ : MonoBehaviour
         pauseImage.SetActive(false);
         puaseTextImage.SetActive(false);
         textImage.SetActive(false);
+
+        
+        bgmSlider.value = bgm.volume;
+      //  effectSlider.value = effectmusic.volume;
+        //effectmusic.volume = PlayerPrefs.GetFloat("Effect Volume");
+        // effectSlider.value = effectmusic.volume;
+
+        //effectSlider.value = PlayerPrefs.GetFloat("Effect Slider");
+
+        //bgm.volume = 1;
+        //bgmSlider.value = 1;
+
+       // effectSlider.value = PlayerPrefs.GetFloat("Effect Slider");
+       // effectmusic.volume = PlayerPrefs.GetFloat("Effec Volume");
+        bgm.volume = PlayerPrefs.GetFloat("BGM Volume");
+        bgmSlider.value = PlayerPrefs.GetFloat("BGM Slider");
     }
     void Update()
     {
@@ -71,11 +89,12 @@ public class PauseMenu_ : MonoBehaviour
                     pauseImage.SetActive(false);
                     puaseTextImage.SetActive(false);
                     textImage.SetActive(false);
+
                     // hS.stopMoving = false;
                 }
                 else
                 {
-
+                    option.SetActive(false);
                     GameIsPaused = false;
                     Pause();
                     pM.lockMoving = true;
@@ -113,8 +132,13 @@ public class PauseMenu_ : MonoBehaviour
             MenuB.SetActive(true);
             OptionB.SetActive(true);
         }
-
+        
         //Debug.Log("gameisPaused : " + GameIsPaused);
+
+   
+        PlayerPrefs.SetFloat("BGM Volume", bgm.volume);
+        PlayerPrefs.SetFloat("BGM Slider", bgmSlider.value);
+
     }
 
     public void Resume()
@@ -162,15 +186,26 @@ public class PauseMenu_ : MonoBehaviour
         puaseTextImage.SetActive(true);
         textImage.SetActive(true);
     }
-
+    //float index
     public void MusicValue(float index) 
     {
+
+        //index = PlayerPrefs.GetFloat("BGM Slider");
+        //bgm.volume = index;
         bgm.volume = index;
+        bgmSlider.value = index;
+       // PlayerPrefs.SetFloat("BGM Volume", bgm.volume);
+
+
     }
 
     public void EffectMusicValue(float index)
     {
+       // index = PlayerPrefs.GetFloat("Effect Slider");
         effectmusic.volume = index;
+       // effectSlider.value = index;
+       // PlayerPrefs.SetFloat("Effect Volume", effectmusic.volume);
+       // PlayerPrefs.SetFloat("Effect Slider", index);
     }
 
     //public void LoadMenu() { Debug.Log("Go to the Menu"); }
