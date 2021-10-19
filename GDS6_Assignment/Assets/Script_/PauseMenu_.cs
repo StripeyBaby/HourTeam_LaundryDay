@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu_ : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class PauseMenu_ : MonoBehaviour
     public GameObject MusicSlider;
     public GameObject EffectMusicSlider;
 
+    [Header("Image :")]
+    public GameObject option;
+    public GameObject pauseImage;
+    public GameObject puaseTextImage;
+    public GameObject textImage;
+
     bool turnToOptions = false;
 
     [Header("Audior")]
@@ -35,7 +42,11 @@ public class PauseMenu_ : MonoBehaviour
 
     private void Start()
     {
+        option.SetActive(false);
         pauseMenuUI.SetActive(false);
+        pauseImage.SetActive(false);
+        puaseTextImage.SetActive(false);
+        textImage.SetActive(false);
     }
     void Update()
     {
@@ -53,7 +64,13 @@ public class PauseMenu_ : MonoBehaviour
                     Resume();
                     pM.lockMoving = false;
                     p2M.lockMoving = false;
-                    turnToOptions = false; 
+                    turnToOptions = false;
+                    pauseImage.SetActive(true);
+                    puaseTextImage.SetActive(true);
+                    textImage.SetActive(true);
+                    pauseImage.SetActive(false);
+                    puaseTextImage.SetActive(false);
+                    textImage.SetActive(false);
                     // hS.stopMoving = false;
                 }
                 else
@@ -63,9 +80,15 @@ public class PauseMenu_ : MonoBehaviour
                     Pause();
                     pM.lockMoving = true;
                     p2M.lockMoving = true;
+                    pauseImage.SetActive(true);
+                    puaseTextImage.SetActive(true);
+                    textImage.SetActive(true);
+                    
                     // Pause();
 
                 }
+
+             
             }
         }
 
@@ -102,6 +125,9 @@ public class PauseMenu_ : MonoBehaviour
         pauseMenuUI.SetActive(false);
         pM.lockMoving = false;
         p2M.lockMoving = false;
+        pauseImage.SetActive(false);
+        puaseTextImage.SetActive(false);
+        textImage.SetActive(false);
 
     }
 
@@ -122,11 +148,19 @@ public class PauseMenu_ : MonoBehaviour
     public void Options() 
     {
         turnToOptions = true;
+        option.SetActive(true);
+        pauseImage.SetActive(false);
+        puaseTextImage.SetActive(false);
+        textImage.SetActive(false);
     }
 
     public void Return()
     {
         turnToOptions = false;
+        option.SetActive(false);
+        pauseImage.SetActive(true);
+        puaseTextImage.SetActive(true);
+        textImage.SetActive(true);
     }
 
     public void MusicValue(float index) 

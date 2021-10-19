@@ -21,6 +21,7 @@ public class Cloth_ : MonoBehaviour
     public float gravityScale;
     float curTime;
     bool hasbeenCollided;
+    public int scoures = 1;
 
     public AudioSource pickedAudio;
     bool hasPlayed = false;
@@ -316,7 +317,7 @@ public class Cloth_ : MonoBehaviour
         if (other.tag == "LaundryPlace")
         {
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
-            wP_.itemCount++;
+           /**/// wP_.itemCount++;
         }
 
         //if (other.tag == "Rope" && noCollide == false)
@@ -346,7 +347,7 @@ public class Cloth_ : MonoBehaviour
         if (other.tag == "LaundryPlace")
         {
             Win_Place_ wP_ = other.GetComponent<Win_Place_>();
-            wP_.itemCount--;
+            //*//wP_.itemCount--;
         }
     }
 

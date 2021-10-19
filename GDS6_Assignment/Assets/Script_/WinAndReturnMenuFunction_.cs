@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-public class CreditSceneControl_ : MonoBehaviour
+public class WinAndReturnMenuFunction_ : MonoBehaviour
 {
-
-    public GameObject blackImage;
-    bool turnOnBlackImage = false;
-    
+  //  public GameObject youWinText;
     public GameObject returnButton;
-    public float readyTime;
+    public GameObject blackImage;
+    public SceneControl_ cSC;
+
     BlackImageFunction_ blackImage_;
+    bool turnOnBlack = false;
+    float readyTime = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,20 +22,17 @@ public class CreditSceneControl_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-            blackImage_.Switch(turnOnBlackImage);
-        
-        
+        blackImage_.Switch(turnOnBlack);
     }
 
-    public void Return() 
+    public void ReturnToMenu() 
     {
-        turnOnBlackImage = true;
-
-        Invoke("StartLoadMenuPage", readyTime);
+        cSC.turnItOff = true;
+        turnOnBlack = true;
+        Invoke("StartLoadingScene", readyTime);
     }
 
-    void StartLoadMenuPage() 
+    void StartLoadingScene() 
     {
         SceneManager.LoadScene("StartScene");
     }

@@ -18,6 +18,8 @@ public class SceneControl_ : MonoBehaviour
     public GameObject cameraAnime;
     CameraStartAnimation_ cameraAnime_;
 
+    public bool turnItOff = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +31,13 @@ public class SceneControl_ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         blackImage_.Switch(turnOnBlackImage);
+        if (turnItOff == false)
+        {
+            blackImage_.Switch(turnOnBlackImage);
         
-         Debug.Log("Switch on :          "+turnOnBlackImage);
+        
+        
+         //Debug.Log("Switch on :          "+turnOnBlackImage);
         
          if (blackImage_.alpha <= 0)
          {
@@ -43,7 +49,7 @@ public class SceneControl_ : MonoBehaviour
              coldTime = setColdTime;
              cameraAnime_.startMoving = true;
          }
-
+        }
         //cameraAnime_.startMoving = true;
     }
 }
