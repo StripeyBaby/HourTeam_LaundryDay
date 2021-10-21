@@ -290,6 +290,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 124572006, guid: 9e555a7d181000e4ba476ea1bf93a5ee, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2627202351482614237, guid: 9e555a7d181000e4ba476ea1bf93a5ee, type: 3}
       propertyPath: m_Text
       value: 'Credit
@@ -483,6 +487,10 @@ PrefabInstance:
     - target: {fileID: 2627202352146888817, guid: 9e555a7d181000e4ba476ea1bf93a5ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627202352146888829, guid: 9e555a7d181000e4ba476ea1bf93a5ee, type: 3}
+      propertyPath: readyTime
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2627202352146888830, guid: 9e555a7d181000e4ba476ea1bf93a5ee, type: 3}
       propertyPath: m_Name
