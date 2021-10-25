@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class StartPage_ : MonoBehaviour
 {
+    public Camera mainCamera;
+
     public GameObject blackImage;
     public float readyTime;
     bool turnOnBlackImage = false;
@@ -31,12 +33,10 @@ public class StartPage_ : MonoBehaviour
 
         // blackImage_.Switch(false);
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit;
 
-        if (hit.collider != null)
-        {
-            Debug.Log("Target name" + hit.collider.name);
-        }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
 
     }
 
