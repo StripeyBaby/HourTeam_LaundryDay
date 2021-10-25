@@ -22,6 +22,8 @@ TagManager:
   - StartMenuButtonPlay
   - StartMenuButtonExit
   - vertical Edge
+  - StartButton
+  - ExitButton
   layers:
   - Default
   - TransparentFX
