@@ -12,7 +12,7 @@ public class WinAndReturnMenuFunction_ : MonoBehaviour
 
     BlackImageFunction_ blackImage_;
     bool turnOnBlack = false;
-    float readyTime = 5f;
+    float readyTime = 2f;
     // Start is called before the first frame update
     void Start()
     {
