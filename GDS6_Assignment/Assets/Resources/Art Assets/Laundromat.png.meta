@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -5097611566622205157
     second: Laundromat_2
+  - first:
+      213: -4837675373067914718
+    second: Laundromat_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -140,11 +143,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 379
-        y: 587
+        y: 1428
         width: 1722
-        height: 1253
+        height: 412
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,7 +168,7 @@ TextureImporter:
         width: 1114
         height: 803
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -186,7 +189,7 @@ TextureImporter:
         width: 48
         height: 1379
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: b1b9f88d945a149b0800000000000000
       internalID: -5097611566622205157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laundromat_3
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 588
+        width: 1716
+        height: 838
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 222b1a911ef1ddcb0800000000000000
+      internalID: -4837675373067914718
       vertices: []
       indices: 
       edges: []
